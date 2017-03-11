@@ -182,11 +182,36 @@ while True:
         # show sonar device/chest status
         if sonarDevices > 1: extraSsonar = 's'
         else: extraSsonar = ''
-        if len(theChests) >: extraSchest = 's'
+        if len(theChests) > 1: extraSchest = 's'
         else: extraSchest = ''
         print('You have %s sonar device%s left. %s treasure chest%s remaining.' % (sonarDevices, extraSsonar, len(theChests), extraSchest))
 
         x, y = enterPlayerMove()
-        previousMove.append([x, y]) # we must track all moves so that sonar devices can be updated.
+        previousMoves.append([x, y]) # we must track all moves so that sonar devices can be updated.
 
         moveResult = makeMove(theBoard, theChests, x, y)
+        if moveResult == False:
+            continue
+        else:
+            if moveResult == 'You have found a sunken treasure chest!':
+                # update all the sonar devices currently on the map.
+                for x, y in previousMoves:
+                    makeMove(theBoard, theChests, x, y)
+            drawBoard(theBoard)
+            print(moveResult)
+
+        if len(theChests) == 0:
+            print('You have found all the sunken treasure chests! Congratulations and good game!')
+            break
+
+        sonarDevices -= 1
+
+    if sonarDevices == 0:
+        print('We\'ve run out of sonar devices! Now we have to turn the ship around and head')
+        print('for home with treasure chests still out there! Game over.')
+        print('    The remaining chests were here:')
+        for x, y in theChests:
+            print('    %s, %s' % (x, y))
+
+    if not playAgain():
+        sys.exit()
