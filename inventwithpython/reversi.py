@@ -4,7 +4,7 @@ import random
 import sys
 
 def drawBoard(board):
-    # This function prints out the board that it was passed. Returns none.
+    # This function prints out the board that it was passed. Returns None.
     HLINE = '  +---+---+---+---+---+---+---+---+'
     VLINE = '  |   |   |   |   |   |   |   |   |'
 
@@ -71,16 +71,16 @@ def isValidMove(board, tile, xstart, ystart):
                 y += ydirection
                 if not isOnBoard(x, y): # break out of while loop, then continue in for loop
                     break
-                if not isOnBoard(x, y):
-                    continue
-                if board[x][y] == tile:
-                    # There are pieces to flip over. Go in the reverse direction until we reach the original space, noting all the tiles along the way.
-                    while True:
-                        x -= xdirection
-                        y -= ydirection
-                        if x == xstart and y == ystart:
-                            break
-                        tilesToFlip.append([x, y])
+            if not isOnBoard(x, y):
+                continue
+            if board[x][y] == tile:
+                # There are pieces to flip over. Go in the reverse direction until we reach the original space, noting all the tiles along the way.
+                while True:
+                    x -= xdirection
+                    y -= ydirection
+                    if x == xstart and y == ystart:
+                        break
+                    tilesToFlip.append([x, y])
 
     board[xstart][ystart] = ' ' # restore the empty space
     if len(tilesToFlip) == 0: # If no tiles were flipped, this is not a valid move.
@@ -131,7 +131,7 @@ def enterPlayerTile():
     # Returns a list with the player's tile as the first item, and the computer's tile as the second.
     tile = ''
     while not (tile == 'X' or tile == 'O'):
-        print('Do y ou want to be X or O?')
+        print('Do you want to be X or O?')
         tile = input().upper()
 
     # the first element in the list is the player's tile, the second is the computer's tile.
