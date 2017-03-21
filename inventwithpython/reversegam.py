@@ -43,3 +43,33 @@ def isValidMove(board, tile, xstart, ystart):
             x += xdirection
             y += ydirection
             if isOnBoard(x, y) and board[x][y] == tile:
+                # There are pieces to flip over. Go in the reverse direction until we reach the original space, noting all the tiles along the way.
+        while True:
+            x -= xdirection
+            y -= ydirection
+            if x == xstart and y == ystart:
+                break
+            tilesToFlip.append([x, y])
+
+    if len(tilesToFlip) == 0: # If no tiles were flipped, this is not a valid move.
+        return False
+    return tilesToFlip
+
+def isOnBoard(x, y):
+    # Return True if the coordinates are located on the board.
+    return x >= 0 and x <= WIDTH - 1 and y >= 0 and y <= HEIGHT - 1
+
+def getBoardWithValidMoves(board, tile):
+    # Return a new board with periods marking the valid moves the player can make.
+    boardCopy = getBoardCopy(board)
+
+    for x, y in getValidMoves(boardCopy, tile):
+        boardCopy[x][y] = '.'
+    return boardCopy
+
+def getValidMoves(board, tile):
+    # Return a list of [x,y] lists of valid moves for the given player on the given board.
+    validMoves = []
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            if isValidMove(board, tile, x, y) != False:
