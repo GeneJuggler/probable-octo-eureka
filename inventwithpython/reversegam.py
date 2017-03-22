@@ -73,3 +73,38 @@ def getValidMoves(board, tile):
     for x in range(WIDTH):
         for y in range(HEIGHT):
             if isValidMove(board, tile, x, y) != False:
+                validMoves.append([x, y])
+    return validMoves
+
+def get ScoreOfBoard(board):
+    # Determine the score by counting the tiles. Return a dictionary with keys 'X' and 'O'.
+    xscore = 0
+    oscore = 0
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            if board[x][y] == 'X':
+                xscore += 1
+            if board[x][y] == 'O':
+                oscore += 1
+    return {'X' :xscore, 'O':oscore}
+
+def enterPlayerTile():
+    # Let the player enter which tile they want to be.
+    # Return a list with the player's tile as the first item and the computer's tile as the second.
+    tile = ''
+    while not (tile == 'X' or tile == 'O'):
+        print('Do you want to be X or O?')
+        tile = input().upper()
+
+    # The first element in the list is the player's tile, and the second is the computer's tile.
+    if tile == 'X':
+        return ['X', 'O']
+    else:
+        return ['O', 'X']
+
+def whoGoesFirst():
+    # Randomly choose who goes first.
+    if random.randint(0, 1) == 0:
+        return 'computer'
+    else:
+            return 'player'
