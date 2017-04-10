@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 
-# Set up pygame. Test change.
+# Set up pygame. Test change. New test change.
 pygame.init()
 
 # Set up the window.
