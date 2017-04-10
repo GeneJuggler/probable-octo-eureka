@@ -34,3 +34,30 @@ pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56
 pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
 pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
 pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
+
+# Draw a blue circle onto the surface.
+pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
+
+# Draw a red ellipse onto the surface.
+pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
+
+# Draw the text's background rectangle onto the surface.
+pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
+
+# Get a pixel array of the surface.
+pixArray = pygame.PixelArray(windowSurface)
+pixArray[480][380] = BLACK
+del pixArray
+
+# Draw the text onto the surface.
+windowSurface.blit(text, textRect)
+
+# Draw the window onto the screen.
+pygame.display.update()
+
+# Run the game loop.
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
