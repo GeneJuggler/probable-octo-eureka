@@ -17,3 +17,12 @@ UPLEFT = 'upleft'
 UPRIGHT = 'upright'
 
 MOVESPEED = 4
+
+# Set up the colors.
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+# Set up the box data structure.
+b1 = {'rect':pygame.Rect(300, 80, 50, 100), 'color':RED, 'dir':UPRIGHT}
