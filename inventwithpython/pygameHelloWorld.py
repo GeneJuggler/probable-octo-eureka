@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys # test
 from pygame.locals import *
 
 # Set up pygame.
