@@ -42,3 +42,9 @@ def drawText(text, font, surface, x, y):
 # Set up pygame, the window, and the mouse cursor.
 pygame.init()
 mainClock = pygame.time.Clock()
+windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+pygame.display.set_caption('Dodger')
+pygame.mouse.set_visible(False)
+
+# Set up the fonts.
+font = pygame.font.SysFont(None, 48)
