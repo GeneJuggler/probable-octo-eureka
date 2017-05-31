@@ -24,4 +24,29 @@ player = pygame.Rect(300, 100, 50, 50)
 foods = []
 for i in range(20):
     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
-    
+
+# Set up movement variables.
+moveLeft = False
+moveRight = False
+moveUp = False
+moveDown = False
+
+MOVESPEED = 6
+
+
+# Run the game loop.
+while True:
+    # Check for events.
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == KEYDOWN:
+            # Change the keyboard variables.
+            if event.key == K_LEFT or event.key == K_a:
+                moveRight = False
+                moveLeft = True
+            if event.key == K_RIGHT or event.key == K_d:
+                moveLeft = False
+                moveRight = True
+            if event.key == K_UP or event.key == K_w:
