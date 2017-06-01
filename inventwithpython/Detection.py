@@ -50,3 +50,7 @@ while True:
                 moveLeft = False
                 moveRight = True
             if event.key == K_UP or event.key == K_w:
+                moveDown = False
+                moveUp = True
+            if event.key == K_DOWN or event.key == K_s:
+                
