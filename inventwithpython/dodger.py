@@ -1,4 +1,4 @@
-import pygame, random, sys
+import pygame.random, sys
 from pygame.locals import *
 
 WINDOWWIDTH = 600
@@ -19,13 +19,13 @@ def terminate():
 
 def waitForPlayerToPressKey():
     while True:
-        for event in pygame.event.get()
-        if event.type == QUIT:
-            terminate()
-        if event.type == KEYDOWN:
-            if event.key == K_ESCAPE: # Pressing ESC quits.
+        for event in pygame.event.get():
+            if event.type == QUIT:
                 terminate()
-            return
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE: # Pressing ESC quits.
+                    terminate()
+                return
 
 def playerHasHitBaddie(playerRect, baddies):
     for b in baddies:
@@ -37,14 +37,3 @@ def drawText(text, font, surface, x, y):
     textobj = font.render(text, 1, TEXTCOLOR)
     textrect = textobj.get_rect()
     textrect.topleft = (x, y)
-    surface.blit(textobj, textrect)
-
-# Set up pygame, the window, and the mouse cursor.
-pygame.init()
-mainClock = pygame.time.Clock()
-windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-pygame.display.set_caption('Dodger')
-pygame.mouse.set_visible(False)
-
-# Set up the fonts.
-font = pygame.font.SysFont(None, 48)
