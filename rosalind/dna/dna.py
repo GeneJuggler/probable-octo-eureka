@@ -13,4 +13,4 @@ filename = filedialog.askopenfilename()
 text = open(filename, 'r')
 text = text.read()
 
-print(text)
+print(text.count('A'), text.count('C'), text.count('G'), text.count('T'))
